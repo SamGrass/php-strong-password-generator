@@ -10,7 +10,24 @@ $specials = ['!','?','&','%','$','<','>','^','+','-','*','/','(',')','[',']','{'
 // creo un array che contenga gli altri
 $password_characters = array_merge($alphabet, $nums, $specials);
 
-var_dump($_GET)
+// creo una funzione che in base al numero tornato da $_GET['length'] va a prendere casualmente i caratteri nell'array $password_characters
+function randomPassword($length, $characters){
+    $result = [];
+    for ($i = 0; $i < $length; $i++) {
+        $result[] = $characters [array_rand($characters)];
+    }
+    return implode("", $result);
+};
+
+// utilizzo la funzione per tornarmi una password
+if (isset($_GET['length'])) {
+    $password = randomPassword($_GET['length'], $password_characters);
+} else {
+    $password = '';
+}
+
+var_dump($_GET);
+var_dump($password);
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +42,7 @@ var_dump($_GET)
     <div class="container text-center">
         <h1>Password generator</h1>
         <div>Genera una password di lunghezza compresa tra 8 e 32</div>
+        <div><?php echo $password ?></div>
 
         <!-- form con la selezione delle caratteristiche della password -->
         <form action="index.php" method="GET">
