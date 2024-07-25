@@ -1,0 +1,18 @@
+body {
+    background-color: rgb(22, 22, 33);
+    color: #fff;
+}
+
+.ms_card {
+    margin: 1rem auto;
+    font-size: 1.1rem;
+    border-radius: 1em;
+    width: 60%;
+    padding: 0.6em;
+    background-color: rgb(63, 63, 133);
+}
+
+.ms_card.ms_card-form {
+    color: #000000;
+    background-color: #fff;
+}
