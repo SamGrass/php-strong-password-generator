@@ -5,11 +5,12 @@ $upper_alphabet = range("A","Z");
 $alphabet = array_merge($lower_alphabet, $upper_alphabet);
 // creo array che contiene i numeri da 0 a 1
 $nums = range(0,9);
-var_dump($nums);
 // creo array che contiene dei caratteri speciali
 $specials = ['!','?','&','%','$','<','>','^','+','-','*','/','(',')','[',']','{','}','@','#','_','=',];
-var_dump($specials);
+// creo un array che contenga gli altri
+$password_characters = array_merge($alphabet, $nums, $specials);
 
+var_dump($_GET)
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +22,18 @@ var_dump($specials);
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="container text-center">
+        <h1>Password generator</h1>
+        <div>Genera una password di lunghezza compresa tra 8 e 32</div>
+
+        <!-- form con la selezione delle caratteristiche della password -->
+        <form action="index.php" method="GET">
+            <label for="length-password">Lunghezza password: </label>
+            <input type="number" name="length" id="length-password" min="8" max="32"> <br>
+
+            <button class="btn btn-primary" type="submit">Invia</button>
+        </form>
+
+    </div>
 </body>
 </html>
