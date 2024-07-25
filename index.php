@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/functions.php";
 
+
 // creo array che contiene lettere maiuscole e minuscole
 $lower_alphabet = range("a","z");
 $upper_alphabet = range("A","Z");
