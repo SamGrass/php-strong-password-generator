@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . "/functions.php";
+
 // creo array che contiene lettere maiuscole e minuscole
 $lower_alphabet = range("a","z");
 $upper_alphabet = range("A","Z");
@@ -10,24 +12,12 @@ $specials = ['!','?','&','%','$','<','>','^','+','-','*','/','(',')','[',']','{'
 // creo un array che contenga gli altri
 $password_characters = array_merge($alphabet, $nums, $specials);
 
-// creo una funzione che in base al numero tornato da $_GET['length'] va a prendere casualmente i caratteri nell'array $password_characters
-function randomPassword($length, $characters){
-    $result = [];
-    for ($i = 0; $i < $length; $i++) {
-        $result[] = $characters [array_rand($characters)];
-    }
-    return implode("", $result);
-};
-
 // utilizzo la funzione per tornarmi una password
 if (isset($_GET['length'])) {
     $password = randomPassword($_GET['length'], $password_characters);
 } else {
     $password = '';
 }
-
-var_dump($_GET);
-var_dump($password);
 ?>
 
 <!DOCTYPE html>
@@ -41,8 +31,13 @@ var_dump($password);
 <body>
     <div class="container text-center">
         <h1>Password generator</h1>
-        <div>Genera una password di lunghezza compresa tra 8 e 32</div>
-        <div><?php echo $password ?></div>
+        <?php if (!isset($_GET['length'])): ?>
+            <div>Genera una password di lunghezza compresa tra 8 e 32</div>
+        <?php elseif (empty($_GET['length'])): ?>
+            <div>Errore: seleziona la lunghezza della password</div>
+        <?php else: ?>
+            <div>La tua password è: <?php echo $password ?></div>
+        <?php endif; ?>
 
         <!-- form con la selezione delle caratteristiche della password -->
         <form action="index.php" method="GET">
