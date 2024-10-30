@@ -3,7 +3,12 @@
 // creo sessione per segnare la password
 session_start();
 
-$password = $_SESSION['password'];
+if (isset($_SESSION['password'])) {
+    $password = $_SESSION['password'];
+} else {
+    header('Location: index.php');
+}
+
 
 ?>
 
